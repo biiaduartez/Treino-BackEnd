@@ -45,17 +45,31 @@ entradaDeDados.question('Digite o nome do aluno:\n', function(nome) {
 
                         console.log('ERRO: É necessário que todos os dados digitados sejam números')
 
+                    } else if (primeiraNota < 0 || primeiraNota > 10 ||
+                        segundaNota < 0 || segundaNota > 10 ||
+                        terceiraNota < 0 || terceiraNota > 10 ||
+                        quartaNota < 0 || quartaNota > 10) {
+
+                        console.log('ERRO: A nota deve ser entre 0 a 10')
+
                     } else {
 
-                        console.log(media);
-
-                        let media = 0;
                         media = (Number(primeiraNota) + Number(segundaNota) +
-                            Number(terceiraNota) + Number(quartaNota)) / 4;
-                    }
+                            Number(terceiraNota) + Number(quartaNota)) / 4
 
-                });
-            });
-        });
-    });
-});
+                        console.log('A média é: ', media)
+
+                        if (media >= 7) {
+                            console.log('APROVADO')
+
+                        } else {
+                            console.log('REPROVADO')
+
+                        }
+                    }
+                })
+            })
+
+        })
+    })
+})
