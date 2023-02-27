@@ -1,6 +1,6 @@
 /************************************************************
-  Objetivo: Trabalhando com Array
- * Data: 24/02/2023
+  Objetivo: Trabalhando com Array, iniciando o JSON
+ * Data: 27/02/2023
  * Autor: Bianca Ferreira Duarte
  * Versâo: 1.0 
  * *********************************************************/
@@ -29,7 +29,25 @@ const listaProdutos = [
     'WebCam'
 ]
 
+const listaProdutosJson = {}
 
+/* !!! forma errada de manipulação de conjunto de dados!!!
+const nome1 = 'José';
+const nome2 = 'Maria';
+const nome3 = 'Luiz';
+const nome4 = 'Carlos';
+*/
+
+/* JSON com estrutura Array
+    const produtos = {
+        [
+            {nome: "Teclado", cor: "Preto", qntdade:  "50"},
+            {nome: "Monitor", cor: "Branco", qntdade: "30"},
+            {nome: "Mouse", cor: "Branco", qntdade: "200"}
+
+        ]
+    }
+ */
 
 const manipulanadoElementos = function() {
 
@@ -111,7 +129,7 @@ const filtrandoElementos = function() {
     console.log(novosProdutos);
 };
 
-const removerElemento = function() {
+const removerElemento = function(array, nomeProduto) {
     let nome = nomeProduto;
     let indice = novaLista.indexOf(nome);
     let status;
@@ -123,18 +141,94 @@ const removerElemento = function() {
     } else {
         status = false;
     }
-    if (status) {
+
+    if (status)
         return novaLista
-    } else {
+    else
         return status;
-    }
+
 };
 
-console.log(listaProdutos);
+const listagemProdutos = function() {
+    let listaProdutosJson = {};
 
-/* !!! forma errada de manipulação de conjunto de dados!!!
-const nome1 = 'José';
-const nome2 = 'Maria';
-const nome3 = 'Luiz';
-const nome4 = 'Carlos';
-*/
+
+    let listProduts = [
+
+        {
+            nome: 'Teclado DELL',
+            valor: 200,
+            quantidade: 50
+        },
+
+        {
+            nome: 'Moitor DELL',
+            valor: 1000,
+            quantidade: 70
+        },
+
+        {
+            nome: 'Mouse DELL',
+            valor: 100,
+            quantidade: 350
+        }
+    ];
+
+    let listCores = [
+        'Branco',
+        'Preto',
+        'Cinza'
+    ];
+
+    let listTipoTeclado = [
+        'Mecânico',
+        'Semi-Mecânico',
+        'Membrana'
+    ];
+
+    let listTipoMonitor = [
+        'LCD',
+        'Full-HD',
+        '4K',
+        'OLED'
+    ];
+
+    //ADICIONA CHAVES (OPÇÕES) NO TECLADO
+    listProduts[0].cores = listCores;
+    listProduts[0].tipo = listTipoTeclado;
+
+    //ADICIONA CHAVES (OPÇÕES) NO MONITOR
+    listProduts[1].cores = listCores;
+    listProduts[1].tipo = listTipoMonitor;
+
+    //ADICIONA CHAVE (OPÇÕES) NO MOUSE (COR APENAS)
+    listProduts[2].cores = listCores;
+    listaProdutosJson.produtos = listProduts;
+
+    console.log(listaProdutosJson);
+
+    //RETORNA TODOS OS DADOS DO PRODUTO (1° nível do json)
+    listaProdutosJson.produtos.forEach(function(dadosProduto) {
+        console.log('\n NOME: ' + dadosProduto.nome);
+        console.log(' VALOR: ' + dadosProduto.valor);
+
+        if (dadosProduto.tipo != undefined)
+        //RETORNA TODOS OS TIPOS EXISTENTES PARA CADA PRODUTO
+            dadosProduto.tipo.forEach(function(dadosTipos) {
+            console.log(' TIPO:' + dadosTipos)
+        });
+
+        //RETORNA TODAS AS CORES EXISTENTES PARA CADA PRODUTO
+        if (dadosProduto.cores != undefined)
+            dadosProduto.cores.forEach(function(dadosCores) {
+                console.log(' *** ' + dadosCores + ' *** ');
+            });
+    })
+
+
+    //console.log('NOME: ' + listaProdutosJson.produtos[1].nome);
+    //console.log('\n VALOR:' + listaProdutosJson.produtos[1].valor);
+    //console.log('\n COR:' + listaProdutosJson.produtos[1].cores);
+}
+
+listagemProdutos();
